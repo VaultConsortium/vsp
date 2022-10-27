@@ -17,7 +17,6 @@ modified, replaced or deprecated. Many initial VSP's will mirror Polkadot Standa
 - [Vault Standards Proposals (VSPs)](#vault-standards-proposals-vsps)
   - [:clipboard: Process](#clipboard-process)
   - [:pencil: Contributing](#pencil-contributing)
-  - [:bulb: Help](#bulb-help)
 
 ## :clipboard: Process  
 
