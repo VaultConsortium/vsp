@@ -2,12 +2,12 @@
 
 
 A Vault Standards Proposal (VSP) describes standards for the Vault ecosystem. The Vault Standards Proposal GitHub is a community-based initiative.  
-PSP process is not supposed to be a substitute for Vault Governance process and is meant to focus only on commonly agreed usage patterns rather than protocol adjustments.  
+VSP process is not supposed to be a substitute for Vault Governance process and is meant to focus only on commonly agreed usage patterns rather than protocol adjustments.  
 
 > __Disclaimer__: The Vault network is young and many ecosystem
 projects are just getting started. As of now, we loosely accept proposals that we might
 not actively endorse, do not expect to be implemented or might fall outside the
-scope of the PSP. We think many standards will be adopted organically (with some
+scope of the VSP. We think many standards will be adopted organically (with some
 coordination) and change with time. We expect that a more firm process for
 standardization will evolve as adoption takes place. Certain proposals might be
 modified, replaced or deprecated. Many initial VSP's will mirror Polkadot Standards Proposal(s) to ensure interoperability between Vault Network <-> Polkadot <-> and Other Substrate-based chains.
@@ -42,7 +42,7 @@ A VSP should provide the motivation as well as a technical specification for the
 
 1. Fork this repository.
 2. In the newly created fork, create a copy of the template.
-3. Fill out the [template](./VSPs/vsp-template.md) with the details of your PSP. If your PSP requires images, the images should be integrated in a subdirectory of the src folder, which has your PSP number as the name.
+3. Fill out the [template](./VSPs/vsp-template.md) with the details of your VSP. If your VSP requires images, the images should be integrated in a subdirectory of the src folder, which has your VSP number as the name.
 4. Once you have completed the application, click on "create new pull request".
-5. Rename the file with "psp-number_of_your_pr.md".
+5. Rename the file with "vsp-number_of_your_pr.md".
 6. Update the pull request. 
