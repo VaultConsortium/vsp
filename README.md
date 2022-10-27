@@ -42,7 +42,7 @@ A VSP should provide the motivation as well as a technical specification for the
 
 1. Fork this repository.
 2. In the newly created fork, create a copy of the template.
-3. Fill out the [template](./PSPs/psp-template.md) with the details of your PSP. If your PSP requires images, the images should be integrated in a subdirectory of the src folder, which has your PSP number as the name.
+3. Fill out the [template](./VSPs/vsp-template.md) with the details of your PSP. If your PSP requires images, the images should be integrated in a subdirectory of the src folder, which has your PSP number as the name.
 4. Once you have completed the application, click on "create new pull request".
 5. Rename the file with "psp-number_of_your_pr.md".
 6. Update the pull request. 
