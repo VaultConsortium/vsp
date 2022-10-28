@@ -26,10 +26,10 @@ Examples of implementations:
 
 ## Motivation for having a standard separate from ERC-20
 Due to the different nature of WebAssembly smart contracts and the difference between EVM and the [`contracts` pallet](https://github.com/paritytech/substrate/tree/master/frame/contracts) in Substrate, this standard proposal has specific rules and methods,
-therefore PSP-22 differs from ERC-20 in its implementation.
+therefore VSP-1 differs from ERC-20 in its implementation.
 
 Also, this standard proposal defines an extensive method list in the interface. Unlike ERC-20, it includes `increase_allowance` and `decrease_allowance`, and defines metadata fields as part of a separate interface.
-Another difference is that it has the `PSP22Receiver` interface, and the `before_received` method is called at the end of transfer if the recipient is a contract.
+Another difference is that it has the `VSP22Receiver` interface, and the `before_received` method is called at the end of transfer if the recipient is a contract.
 
 # This standard is at ABI level
 
@@ -43,12 +43,12 @@ Substrate's [`contracts` pallet](https://github.com/paritytech/substrate/tree/ma
 
 ### Interfaces
 
-#### PSP-22 Interface
+#### VSP-1 Interface
 
 This section defines the required interface for this standard.
 
 ##### **total_supply()** ➔ Balance
-Selector: `0x162df8c2` - first 4 bytes of `blake2b_256("PSP22::total_supply")`
+Selector: `0x162df8c2` - first 4 bytes of `blake2b_256("VSP1::total_supply")`
 ```json
 {
   "args": [],
@@ -57,7 +57,7 @@ Selector: `0x162df8c2` - first 4 bytes of `blake2b_256("PSP22::total_supply")`
   ],
   "mutates": false,
   "name": [
-    "PSP22",
+    "VSP1",
     "total_supply"
   ],
   "returnType": {
@@ -71,7 +71,7 @@ Selector: `0x162df8c2` - first 4 bytes of `blake2b_256("PSP22::total_supply")`
 ```
 
 ##### **balance_of**(owner: AccountId) ➔ Balance
-Selector: `0x6568382f` - first 4 bytes of `blake2b_256("PSP22::balance_of")`
+Selector: `0x6568382f` - first 4 bytes of `blake2b_256("VSP1::balance_of")`
 ```json
 {
   "args": [
@@ -92,7 +92,7 @@ Selector: `0x6568382f` - first 4 bytes of `blake2b_256("PSP22::balance_of")`
   ],
   "mutates": false,
   "name": [
-    "PSP22",
+    "VSP1",
     "balance_of"
   ],
   "returnType": {
@@ -106,7 +106,7 @@ Selector: `0x6568382f` - first 4 bytes of `blake2b_256("PSP22::balance_of")`
 ```
 
 ##### **allowance**(owner: AccountId, spender: AccountId) ➔ Balance
-Selector: `0x4d47d921` - first 4 bytes of `blake2b_256("PSP22::allowance")`
+Selector: `0x4d47d921` - first 4 bytes of `blake2b_256("VSP1::allowance")`
 ```json
 {
   "args": [
@@ -136,7 +136,7 @@ Selector: `0x4d47d921` - first 4 bytes of `blake2b_256("PSP22::allowance")`
   ],
   "mutates": false,
   "name": [
-    "PSP22",
+    "VSP1",
     "allowance"
   ],
   "returnType": {
@@ -149,8 +149,8 @@ Selector: `0x4d47d921` - first 4 bytes of `blake2b_256("PSP22::allowance")`
 }
 ```
 
-##### **transfer**(to: AccountId, value: Balance, data: [u8]) ➔ Result<(), PSP22Error>
-Selector: `0xdb20f9f5` - first 4 bytes of `blake2b_256("PSP22::transfer")`
+##### **transfer**(to: AccountId, value: Balance, data: [u8]) ➔ Result<(), VSP1Error>
+Selector: `0xdb20f9f5` - first 4 bytes of `blake2b_256("VSP1::transfer")`
 ```json
 {
   "args": [
@@ -200,7 +200,7 @@ Selector: `0xdb20f9f5` - first 4 bytes of `blake2b_256("PSP22::transfer")`
   ],
   "mutates": true,
   "name": [
-    "PSP22",
+    "VSP1",
     "transfer"
   ],
   "returnType": {
@@ -213,8 +213,8 @@ Selector: `0xdb20f9f5` - first 4 bytes of `blake2b_256("PSP22::transfer")`
 }
 ```
 
-##### **transfer_from**(from: AccountId, to: AccountId, value: Balance, data: [u8]) ➔ Result<(), PSP22Error>
-Selector: `0x54b3c76e` - first 4 bytes of `blake2b_256("PSP22::transfer_from")`
+##### **transfer_from**(from: AccountId, to: AccountId, value: Balance, data: [u8]) ➔ Result<(), VSP1Error>
+Selector: `0x54b3c76e` - first 4 bytes of `blake2b_256("VSP1::transfer_from")`
 ```json
 {
   "args": [
@@ -278,7 +278,7 @@ Selector: `0x54b3c76e` - first 4 bytes of `blake2b_256("PSP22::transfer_from")`
   ],
   "mutates": true,
   "name": [
-    "PSP22",
+    "VSP1",
     "transfer_from"
   ],
   "returnType": {
@@ -291,8 +291,8 @@ Selector: `0x54b3c76e` - first 4 bytes of `blake2b_256("PSP22::transfer_from")`
 }
 ```
 
-##### **approve**(spender: AccountId, value: Balance) ➔ Result<(), PSP22Error>
-Selector: `0xb20f1bbd` - first 4 bytes of `blake2b_256("PSP22::approve")`
+##### **approve**(spender: AccountId, value: Balance) ➔ Result<(), VSP1Error>
+Selector: `0xb20f1bbd` - first 4 bytes of `blake2b_256("VSP1::approve")`
 ```json
 {
   "args": [
@@ -331,7 +331,7 @@ Selector: `0xb20f1bbd` - first 4 bytes of `blake2b_256("PSP22::approve")`
   ],
   "mutates": true,
   "name": [
-    "PSP22",
+    "VSP1",
     "approve"
   ],
   "returnType": {
@@ -345,8 +345,8 @@ Selector: `0xb20f1bbd` - first 4 bytes of `blake2b_256("PSP22::approve")`
 
 ```
 
-##### **increase_allowance**(spender: AccountId, delta_value: Balance) ➔ Result<(), PSP22Error>
-Selector: `0x96d6b57a` - first 4 bytes of `blake2b_256("PSP22::increase_allowance")`
+##### **increase_allowance**(spender: AccountId, delta_value: Balance) ➔ Result<(), VSP1Error>
+Selector: `0x96d6b57a` - first 4 bytes of `blake2b_256("VSP1::increase_allowance")`
 ```json
 {
   "args": [
@@ -382,7 +382,7 @@ Selector: `0x96d6b57a` - first 4 bytes of `blake2b_256("PSP22::increase_allowanc
   ],
   "mutates": true,
   "name": [
-    "PSP22",
+    "VSP1",
     "increase_allowance"
   ],
   "returnType": {
@@ -395,8 +395,8 @@ Selector: `0x96d6b57a` - first 4 bytes of `blake2b_256("PSP22::increase_allowanc
 }
 ```
 
-##### **decrease_allowance**(spender: AccountId, delta_value: Balance) ➔ Result<(), PSP22Error>
-Selector: `0xfecb57d5` - first 4 bytes of `blake2b_256("PSP22::decrease_allowance")`
+##### **decrease_allowance**(spender: AccountId, delta_value: Balance) ➔ Result<(), VSP1Error>
+Selector: `0xfecb57d5` - first 4 bytes of `blake2b_256("VSP1::decrease_allowance")`
 ```json
 {
   "args": [
@@ -435,7 +435,7 @@ Selector: `0xfecb57d5` - first 4 bytes of `blake2b_256("PSP22::decrease_allowanc
   ],
   "mutates": true,
   "name": [
-    "PSP22",
+    "VSP1",
     "decrease_allowance"
   ],
   "returnType": {
@@ -448,12 +448,12 @@ Selector: `0xfecb57d5` - first 4 bytes of `blake2b_256("PSP22::decrease_allowanc
 }
 ```
 
-#### PSP22Metadata 
+#### VSP1Metadata 
 
-`PSP22Metadata` is an optional interface for metadata for this fungible token standard.
+`VSP1Metadata` is an optional interface for metadata for this fungible token standard.
 
 ##### **token_name**() ➔ Option<String>
-Selector: `0x3d261bd4` - first 4 bytes of `blake2b_256("PSP22Metadata::token_name")`
+Selector: `0x3d261bd4` - first 4 bytes of `blake2b_256("VSP1Metadata::token_name")`
 ```json
 {
   "args": [],
@@ -462,7 +462,7 @@ Selector: `0x3d261bd4` - first 4 bytes of `blake2b_256("PSP22Metadata::token_nam
   ],
   "mutates": false,
   "name": [
-    "PSP22Metadata",
+    "VSP1Metadata",
     "token_name"
   ],
   "returnType": {
@@ -476,7 +476,7 @@ Selector: `0x3d261bd4` - first 4 bytes of `blake2b_256("PSP22Metadata::token_nam
 ```
 
 ##### **token_symbol**() ➔ Option<String>
-Selector: `0x34205be5` - first 4 bytes of `blake2b_256("PSP22Metadata::token_symbol")`
+Selector: `0x34205be5` - first 4 bytes of `blake2b_256("VSP1Metadata::token_symbol")`
 ```json
 {
   "args": [],
@@ -485,7 +485,7 @@ Selector: `0x34205be5` - first 4 bytes of `blake2b_256("PSP22Metadata::token_sym
   ],
   "mutates": false,
   "name": [
-    "PSP22Metadata",
+    "VSP1Metadata",
     "token_symbol"
   ],
   "returnType": {
@@ -499,7 +499,7 @@ Selector: `0x34205be5` - first 4 bytes of `blake2b_256("PSP22Metadata::token_sym
 ```
 
 ##### **token_decimals**() ➔ u8
-Selector: `0x7271b782` - first 4 bytes of `blake2b_256("PSP22Metadata::token_decimals")`
+Selector: `0x7271b782` - first 4 bytes of `blake2b_256("VSP1Metadata::token_decimals")`
 ```json
 {
   "args": [],
@@ -508,7 +508,7 @@ Selector: `0x7271b782` - first 4 bytes of `blake2b_256("PSP22Metadata::token_dec
   ],
   "mutates": false,
   "name": [
-    "PSP22Metadata",
+    "VSP1Metadata",
     "token_decimals"
   ],
   "returnType": {
@@ -521,12 +521,12 @@ Selector: `0x7271b782` - first 4 bytes of `blake2b_256("PSP22Metadata::token_dec
 }
 ```
 
-#### PSP22Receiver
-`PSP22Receiver` is an interface for any contract that wants to support safe transfers from a PSP-22 token smart contract to avoid unexpected tokens in the balance of contract.
+#### VSP1Receiver
+`VSP1Receiver` is an interface for any contract that wants to support safe transfers from a VSP-1 token smart contract to avoid unexpected tokens in the balance of contract.
 This method is called before a transfer to ensure the recipient of the tokens acknowledges the receipt.
 
-##### **before_received**(&mut self, operator: AccountId, from: AccountId, value: Balance, data: [u8]) ➔ Result<(), PSP22ReceiverError>
-Selector: `0xfda6f1a9` - first 4 bytes of `blake2b_256("PSP22Receiver::before_received")`
+##### **before_received**(&mut self, operator: AccountId, from: AccountId, value: Balance, data: [u8]) ➔ Result<(), VSP1ReceiverError>
+Selector: `0xfda6f1a9` - first 4 bytes of `blake2b_256("VSP1Receiver::before_received")`
 ```json
 {
   "args": [
@@ -568,17 +568,17 @@ Selector: `0xfda6f1a9` - first 4 bytes of `blake2b_256("PSP22Receiver::before_re
     }
   ],
   "docs": [
-    "Ensures that the smart contract allows reception of PSP22 token(s).",
+    "Ensures that the smart contract allows reception of VSP1 token(s).",
     "Returns `Ok(())` if the contract allows the reception of the token(s) and Error `TransferRejected(String))` otherwise.",
     "",
     "This method will get called on every transfer to check whether the recipient in `transfer` is a contract, and if it is,",
     "does it accept tokens. This is done to prevent contracts from locking tokens forever.",
     "",
-    "This method does not throw. Returns `PSP22ReceiverError` if the contract does not accept the tokens."
+    "This method does not throw. Returns `VSP1ReceiverError` if the contract does not accept the tokens."
   ],
   "mutates": true,
   "name": [
-    "PSP22Receiver",
+    "VSP1Receiver",
     "before_received"
   ],
   "returnType": {
@@ -754,7 +754,7 @@ type Balance = u128;
                       }
                     },
                     "path": [
-                      "PSP22Error"
+                      "VSP1Error"
                     ]
                   }
                 }
@@ -800,7 +800,7 @@ type Balance = u128;
                       }
                     },
                     "path": [
-                      "PSP22ReceiverError"
+                      "VSP1ReceiverError"
                     ]
                   }
                 }
@@ -819,7 +819,7 @@ type Balance = u128;
 The suggested methods revert the transaction and return a [SCALE-encoded](https://github.com/paritytech/parity-scale-codec) `Result` type with one of the following `Error` enum variants:
 
 ```rust
-enum PSP22Error {
+enum VSP1Error {
     /// Custom error type for cases in which an implementation adds its own restrictions.
     Custom(String),
     /// Returned if not enough balance to fulfill a request is available.
@@ -834,7 +834,7 @@ enum PSP22Error {
     SafeTransferCheckFailed(String),
 }
 
-enum PSP22ReceiverError {
+enum VSP1ReceiverError {
     /// Returned if a transfer is rejected.
     TransferRejected(String),
 }
@@ -842,4 +842,4 @@ enum PSP22ReceiverError {
 
 ## Copyright
 
-This PSP is placed in the [public domain](https://creativecommons.org/publicdomain/zero/1.0/).
+This VSP is placed in the [public domain](https://creativecommons.org/publicdomain/zero/1.0/).
